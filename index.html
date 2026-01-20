@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pororoca Doceria</title>
+
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <a href="https://www.instagram.com/pororocadoces?igsh=aTF2MmV1azUyNjJq" target="_blank" class="header-insta"
+      aria-label="Instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+      </svg>
+    </a>
+    <div class="logo-container">
+      <img class="logo" src="assets/images/logo/IMG_1318.PNG" alt="Logo da Pororoca Doceria">
+    </div>
+    <h1>Pororoca Doceria</h1>
+    <h2>O Doce Sabor da Amazônia</h2>
+  </header>
+
+  <!-- Produtos -->
+  <div class="products-container" id="products"></div>
+
+  <!-- Carrinho -->
+  <div class="cart" onclick="toggleCart()">
+    <span>🛒</span>
+    <span id="cart-count">0</span>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+  <div class="cart-panel" id="cart-panel">
+    <div class="cart-header">
+      <h3>Seu Pedido</h3>
+      <button class="close-btn" onclick="toggleCart()">&times;</button>
+    </div>
+
+    <!-- Lista de Itens -->
+    <div id="cart-workflow-step-1">
+      <div id="cart-items"></div>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span>R$ <span id="cart-subtotal">0.00</span></span>
+        </div>
+        <div class="summary-row" id="delivery-row" style="display: none;">
+          <span>Taxa de Entrega:</span>
+          <span>R$ <span id="cart-delivery">0.00</span></span>
+        </div>
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span>R$ <span id="cart-total-panel">0.00</span></span>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="showCheckoutForm()">Continuar para Dados</button>
+    </div>
+
+    <!-- Formulário de Checkout -->
+    <div id="cart-workflow-step-2" class="checkout-form">
+      <div class="form-group">
+        <label for="client-name">Seu Nome *</label>
+        <input type="text" id="client-name" placeholder="Como podemos te chamar?">
+      </div>
+
+      <div class="form-group">
+        <label for="client-phone">WhatsApp *</label>
+        <input type="tel" id="client-phone" placeholder="(96) 9xxxx-xxxx">
+      </div>
+
+      <div class="form-group">
+        <label>Forma de Entrega *</label>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="delivery-method" value="retirada" checked onchange="toggleAddress(false)">
+            Retirada
+          </label>
+          <label>
+            <input type="radio" name="delivery-method" value="entrega" onchange="toggleAddress(true)">
+            Entrega
+          </label>
+        </div>
+      </div>
+
+      <div id="address-fields">
+        <div class="form-group">
+          <label for="addr-street">Rua</label>
+          <input type="text" id="addr-street">
+        </div>
+        <div class="form-group">
+          <label for="addr-number">Número</label>
+          <input type="text" id="addr-number">
+        </div>
+        <div class="form-group">
+          <label for="addr-neighborhood">Bairro</label>
+          <input type="text" id="addr-neighborhood">
+        </div>
+        <div class="form-group">
+          <label for="addr-comp">Complemento (Opcional)</label>
+          <input type="text" id="addr-comp">
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button onclick="backToCart()"
+          style="padding: 10px; cursor: pointer; background: transparent; border: 1px solid #ccc; font-family:var(--font-ui);">Voltar</button>
+        <button class="btn-primary" onclick="finalizeOrder()">Finalizar Pedido no WhatsApp via Site</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>Pororoca Doceria - Doces feitos com amor diretamente da Amazônia para você! 🧁</p>
+    <p class="whatsapp-contact">WhatsApp: +55 96 9150-0167</p>
+    <p>
+      <a href="https://www.instagram.com/pororocadoces?igsh=aTF2MmV1azUyNjJq" class="insta" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+        Siga-nos no Instagram
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: 'Amigado', price: 1.50, img: 'assets/images/produtos/f3114899-c30c-452a-8802-b92f8462744c.jpg', desc: 'Dois sabores, uma explosão de prazer! 🍫✨ O brigadeiro amigadinho, feito com chocolate 50% cacau e leite Ninho, é a união perfeita entre o amargo e o doce. Sinta o contraste em cada mordida!' },
+      { id: 2, name: 'Beijinho', price: 1.50, img: 'assets/images/produtos/beijinho.jpg', desc: 'Doce como um xero! 💖 O brigadeiro beijinho é a mistura perfeita de coco e leite condensado, com um toque de carinho em cada pedaço. Uma explosão de sabor que vai derreter seu coração!' },
+      { id: 3, name: 'Ferrero', price: 1.50, img: 'assets/images/produtos/ferrero.jpg', desc: 'Intensamente delicioso! 🍫✨ O brigadeiro de Ferrero de 15g, feito com chocolate 50%, é a combinação perfeita de cremosidade e sabor. Um pedaço de luxo em cada mordida!' },
+      { id: 4, name: 'Caixinha Pai D\'égua 4 un.', price: 10.00, img: 'assets/images/produtos/4 uni.jpg', desc: 'Caixinha da felicidade com sabores da sua escolha do nosso cardápio 🍫✨ 4 unidades' },
+      { id: 5, name: 'Caixinha Pai D\'égua 8 un.', price: 14.00, img: 'assets/images/produtos/8 uni.jpg', desc: 'Caixinha da felicidade com sabores da sua escolha do nosso cardápio 🍫✨ 8 unidades' },
+      { id: 6, name: 'Cento de Brigadeiros', price: 70.00, img: 'assets/images/produtos/cento.jpg', desc: 'Aqui, você escolhe o sabor da felicidade! 😋🍫 100 unidades de brigadeiros 15g.' },
+      { id: 7, name: 'Cento de Hot Dog', price: 180.00, img: 'assets/images/produtos/cento de hot dog.jpg', desc: 'Centro de Hot Dog para suas festas e eventos! 🌭✨' },
+      { id: 8, name: 'Cento de Canudinho', price: 70.00, img: 'assets/images/produtos/cento de canudinho.jpg', desc: 'Centro de Canudinho delicioso e crocante! 🎉' },
+      { id: 9, name: 'Garotinha', price: 1.50, img: 'assets/images/produtos/garotinha.jpg', desc: 'Brigadeiro de Nesquik de 15g, com sabor suave de morango e textura irresistível. Uma explosão de doce nostalgia! 🍓✨', unavailable: true },
+      { id: 10, name: 'Mocinha de Chocolate', price: 1.50, img: 'assets/images/produtos/mocinha de chocolate.jpg', desc: 'Brigadeiro tradicional de 15g, feito com chocolate 50% cacau e coberto com granulados. Cremoso por dentro, crocante por fora e cheio de sabor! 🍫' },
+      { id: 11, name: 'Ninhudo', price: 1.50, img: 'assets/images/produtos/ninhudo.jpg', desc: 'Doçura que é puro encanto! ✨ O brigadeiro Ninhudo é a combinação irresistível de leite Ninho e muito amor.' }
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+      const productsContainer = document.getElementById('products');
+      productsContainer.innerHTML = products.map(product => `
+        <div class="product-card ${product.unavailable ? 'unavailable' : ''}">
+          <div class="image-wrapper" style="position:relative;">
+            <img src="${product.img}" alt="${product.name}" loading="lazy">
+            ${product.unavailable ? '<span class="badge-unavailable">Indisponível</span>' : ''}
+          </div>
+          <h3>${product.name}</h3>
+          <p class="description">${product.desc}</p>
+          <span class="price">R$ ${product.price.toFixed(2)}</span>
+          <button onclick="addToCart(${product.id}, event)" ${product.unavailable ? 'disabled' : ''}>
+            ${product.unavailable ? 'Esgotado' : 'Adicionar ao Carrinho'}
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(productId, event) {
+      const product = products.find(p => p.id === productId);
+      if (product && !product.unavailable) {
+        cart.push(product);
+        updateCart();
+
+        // Feedback Visual
+        const button = event.target;
+        const originalText = button.textContent;
+        button.textContent = '✔ Adicionado!';
+        button.style.backgroundColor = 'var(--accent-color)';
+        button.style.color = 'white';
+        // button.style.border = 'none'; // Optional: remove border if style changes
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.backgroundColor = '';
+          button.style.color = '';
+        }, 1000);
+      }
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+      // Se carrinho ficar vazio, volta pro passo 1
+      if (cart.length === 0) {
+        backToCart();
+      }
+    }
+
+    const DELIVERY_FEE = 5.00;
+
+    function updateCart() {
+      const cartCount = document.getElementById('cart-count');
+      const cartSubtotalEl = document.getElementById('cart-subtotal');
+      const cartDeliveryEl = document.getElementById('cart-delivery');
+      const cartTotalPanel = document.getElementById('cart-total-panel');
+      const cartItems = document.getElementById('cart-items');
+      const deliveryRow = document.getElementById('delivery-row');
+
+      // Calcular Subtotal
+      const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+
+      // Verificar Método de Entrega
+      const deliveryMethodEl = document.querySelector('input[name="delivery-method"]:checked');
+      const deliveryMethod = deliveryMethodEl ? deliveryMethodEl.value : 'retirada';
+
+      let deliveryCost = 0;
+      if (deliveryMethod === 'entrega' && cart.length > 0) {
+        deliveryCost = DELIVERY_FEE;
+        if (deliveryRow) deliveryRow.style.display = 'flex';
+      } else {
+        if (deliveryRow) deliveryRow.style.display = 'none';
+      }
+
+      const total = subtotal + deliveryCost;
+
+      if (cartCount) cartCount.textContent = cart.length;
+      if (cartSubtotalEl) cartSubtotalEl.textContent = subtotal.toFixed(2);
+      if (cartDeliveryEl) cartDeliveryEl.textContent = deliveryCost.toFixed(2);
+      if (cartTotalPanel) cartTotalPanel.textContent = total.toFixed(2);
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="text-align:center; font-style:italic;">Seu carrinho está vazio.</p>';
+      } else {
+        cartItems.innerHTML = cart.map((item, index) => `
+          <div class="cart-item">
+            <div>
+              <strong>${item.name}</strong><br>
+              <small>R$ ${item.price.toFixed(2)}</small>
+            </div>
+            <button onclick="removeFromCart(${index})" style="background:none; border:none; cursor:pointer;">❌</button>
+          </div>
+        `).join('');
+      }
+    }
+
+    function toggleCart() {
+      const overlay = document.getElementById('overlay');
+      const cartPanel = document.getElementById('cart-panel');
+
+      overlay.classList.toggle('open');
+      cartPanel.classList.toggle('open');
+    }
+
+    // Navegação do Carrinho
+    function showCheckoutForm() {
+      if (cart.length === 0) {
+        alert("Adicione itens ao carrinho primeiro!");
+        return;
+      }
+      document.getElementById('cart-workflow-step-1').style.display = 'none';
+      document.getElementById('cart-workflow-step-2').classList.add('active');
+    }
+
+    function backToCart() {
+      document.getElementById('cart-workflow-step-1').style.display = 'block';
+      document.getElementById('cart-workflow-step-2').classList.remove('active');
+    }
+
+    // Lógica do Endereço
+    function toggleAddress(show) {
+      const addrFields = document.getElementById('address-fields');
+      if (show) {
+        addrFields.classList.add('visible');
+      } else {
+        addrFields.classList.remove('visible');
+      }
+    }
+
+    // Finalizar Pedido WhatsApp
+    function finalizeOrder() {
+      const name = document.getElementById('client-name').value.trim();
+      const phone = document.getElementById('client-phone').value.trim();
+      const deliveryMethod = document.querySelector('input[name="delivery-method"]:checked').value;
+
+      if (!name || !phone) {
+        alert("Por favor, preencha seu Nome e WhatsApp.");
+        return;
+      }
+
+      let addressText = "Retirada no local";
+      let deliveryCost = 0;
+
+      if (deliveryMethod === 'entrega') {
+        const street = document.getElementById('addr-street').value.trim();
+        const number = document.getElementById('addr-number').value.trim();
+        const hood = document.getElementById('addr-neighborhood').value.trim();
+        const comp = document.getElementById('addr-comp').value.trim();
+
+        if (!street || !number || !hood) {
+          alert("Por favor, preencha o endereço de entrega completo.");
+          return;
+        }
+        addressText = `Entrega em: ${street}, ${number} - ${hood} ${comp ? '(' + comp + ')' : ''}`;
+        deliveryCost = DELIVERY_FEE;
+      }
+
+      // Montar Mensagem
+      const itemsList = cart
+        .map(item => `- ${item.name} (R$ ${item.price.toFixed(2)})`)
+        .join('\n');
+
+      const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+      const total = subtotal + deliveryCost;
+
+      const whatsappMessage =
+        `*PEDIDO - POROROCA DOCERIA* 🧁\n\n` +
+        `*Cliente:* ${name}\n` +
+        `*Contato:* ${phone}\n\n` +
+        `*Pedido:*\n${itemsList}\n\n` +
+        `*Subtotal: R$ ${subtotal.toFixed(2)}*\n` +
+        (deliveryCost > 0 ? `*Taxa de Entrega: R$ ${deliveryCost.toFixed(2)}*\n` : '') +
+        `*Total Final: R$ ${total.toFixed(2)}*\n\n` +
+        `*Forma de Entrega:* ${addressText}\n\n` +
+        `_Enviado via Site_`;
+
+      const phoneNumber = "559691500167";
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+      window.open(whatsappLink, '_blank');
+    }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+
+      // Fechar ao clicar fora
+      document.getElementById('overlay').addEventListener('click', toggleCart);
+    });
+  </script>
+</body>
+
+</html>

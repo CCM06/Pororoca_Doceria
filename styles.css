@@ -1,0 +1,723 @@
+/* Google Fonts - Adding refined fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&family=Montserrat:wght@300;400;500&display=swap');
+
+/* Variáveis de Cores e Fontes - Vintage Elegante */
+:root {
+    /* Paleta Neutra e Quente */
+    --bg-color: #F9F7F2;
+    /* Off-white "Papel de Carta" */
+    --text-color: #3E3B36;
+    /* Cinza escuro quente (quase preto) */
+    --text-light: #706C61;
+    /* Taupe para textos secundários */
+
+    /* Acentos Refinados */
+    --primary-color: #B07D62;
+    /* Cobre/Terracota suave (mais elegante) */
+    --accent-color: #4A5D45;
+    /* Verde Musgo Profundo (toque de natureza/sofisticação) */
+
+    /* Elementos de Interface */
+    --card-bg: #FFFFFF;
+    --border-color: #E0DDD5;
+    /* Bordas sutis */
+
+    /* Tipografia */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    --font-ui: 'Montserrat', sans-serif;
+    /* Botões e UI */
+
+    /* Efeitos Sutis */
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --border-radius: 4px;
+    /* Cantos levemente arredondados, não redondos demais */
+}
+
+/* Reset e Base */
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    /* Textura de grão ultra-sutil via CSS puro */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Header Editorial Refinado */
+header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+    background: transparent;
+}
+
+.logo-container {
+    display: inline-block;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    margin-bottom: 20px;
+    /* Efeito sutil na logo */
+    filter: sepia(0.1) contrast(0.95);
+    transition: all 0.5s ease;
+}
+
+.logo-container:hover {
+    filter: none;
+    transform: scale(1.02);
+}
+
+.logo-container::after {
+    display: none;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    display: block;
+}
+
+header h1 {
+    font-family: var(--font-heading);
+    color: var(--text-color);
+    font-size: 3rem;
+    margin: 10px 0 5px;
+    font-weight: 400;
+    /* Mais leve para elegância */
+    text-transform: none;
+    /* Maiúsculas e minúsculas para visual editorial */
+    letter-spacing: -0.5px;
+}
+
+header h2 {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+/* Linhas decorativas sutis ao lado do subtítulo */
+header h2::before,
+header h2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 1px;
+    background-color: var(--primary-color);
+    opacity: 0.4;
+}
+
+header h2::before {
+    left: -30px;
+}
+
+header h2::after {
+    right: -30px;
+}
+
+/* Produtos Grid - Minimalista e Arejado */
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 60px 40px;
+    /* Mais espaço vertical */
+    padding: 20px 20px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background-color: transparent;
+    /* Remove o fundo de cartão pesado */
+    padding: 0;
+    box-shadow: none;
+    /* Remove a sombra padrão */
+    transition: all 0.4s ease;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    /* Alinhamento editorial */
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    /* Sem borda ou sombra pesada no hover */
+}
+
+.product-card img {
+    width: 100%;
+    height: 320px;
+    /* Imagens mais altas */
+    object-fit: cover;
+    /* Filtro editorial: levemente quente e desaturado */
+    filter: sepia(0.15) saturate(0.9) brightness(1.05);
+    transition: filter 0.5s ease;
+    margin-bottom: 25px;
+    border-radius: 2px;
+    box-shadow: var(--shadow-soft);
+}
+
+.product-card:hover img {
+    filter: sepia(0) saturate(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+.product-card h3 {
+    font-family: var(--font-heading);
+    margin: 0 0 5px;
+    font-size: 1.5em;
+    color: var(--text-color);
+    letter-spacing: 0;
+    font-style: normal;
+    font-weight: 500;
+    /* Mais leve */
+    border: none;
+    padding: 0;
+}
+
+.product-card .price {
+    font-family: var(--font-ui);
+    color: var(--text-light);
+    /* Preço mais discreto */
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.product-card .description {
+    font-size: 0.95em;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    color: var(--text-light);
+    flex-grow: 1;
+    font-style: italic;
+    /* Charme vintage */
+}
+
+/* Botão minimalista elegante */
+.product-card button {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 0.85em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    width: auto;
+    /* Não ocupa toda a largura */
+    align-self: flex-start;
+    /* Alinha a esquerda */
+    border-radius: 2px;
+    box-shadow: none;
+}
+
+.product-card button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: none;
+    box-shadow: 0 4px 10px rgba(176, 125, 98, 0.3);
+}
+
+.product-card button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #ccc;
+    color: #999;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.product-card button:disabled:hover {
+    transform: none;
+    background-color: transparent;
+    color: #999;
+}
+
+.product-card.unavailable img {
+    filter: grayscale(1) opacity(0.7);
+}
+
+.badge-unavailable {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(62, 59, 54, 0.8);
+    color: white;
+    padding: 5px 10px;
+    font-family: var(--font-ui);
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+
+/* Carrinho Flutuante Minimalista - High Contrast */
+.cart {
+    position: fixed;
+    bottom: 25px;
+    /* Ajuste posicional */
+    right: 25px;
+    background-color: var(--primary-color);
+    /* Terracota para destaque como solicitado */
+    color: #FFF;
+    border-radius: 50%;
+    width: 65px;
+    /* Levemente maior para facilitar o toque mobile */
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(176, 125, 98, 0.4);
+    cursor: pointer;
+    z-index: 1000;
+    border: 2px solid #FFF;
+    /* Borda branca para contraste extra */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cart:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-dark);
+    box-shadow: 0 10px 30px rgba(176, 125, 98, 0.6);
+}
+
+.cart span {
+    font-weight: 500;
+    font-size: 1.1em;
+    font-family: var(--font-ui);
+}
+
+.cart span:first-child {
+    font-size: 1.6em;
+    /* Ícone maior */
+    margin-right: 0;
+}
+
+#cart-count {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: var(--accent-color);
+    /* Verde Musgo para count */
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #FFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Painel Lateral / Modal Estilo Papelaria */
+.cart-panel {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    width: 90%;
+    max-width: 480px;
+    max-height: 85vh;
+    z-index: 1001;
+    padding: 40px;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.cart-panel.open {
+    display: block;
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -45%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.cart-header h3 {
+    font-family: var(--font-heading);
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+    transition: color 0.3s;
+    padding: 0;
+}
+
+.close-btn:hover {
+    color: var(--primary-color);
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item strong {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.cart-item small {
+    color: var(--text-light);
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+}
+
+/* Resumo do Pedido - Estilo Nota Fiscal Limpa */
+.cart-summary {
+    background-color: var(--bg-color);
+    border: none;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 30px 0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-family: var(--font-ui);
+    font-size: 0.95em;
+    color: var(--text-light);
+}
+
+.summary-row.total {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 15px;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 1.2em;
+    font-family: var(--font-heading);
+    color: var(--text-color);
+}
+
+.btn-primary {
+    background-color: var(--text-color);
+    color: white;
+    border: none;
+    padding: 16px;
+    width: 100%;
+    font-family: var(--font-ui);
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulário de Checkout */
+.checkout-form {
+    display: none;
+    margin-top: 20px;
+    border-top: none;
+    padding-top: 0;
+    text-align: left;
+}
+
+.checkout-form.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+.form-group input[type="text"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    background-color: #FFF;
+    font-family: var(--font-body);
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: all 0.3s;
+    color: var(--text-color);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #FFF;
+    box-shadow: 0 0 0 3px rgba(176, 125, 98, 0.1);
+}
+
+.radio-group {
+    display: flex;
+    gap: 25px;
+    margin: 15px 0;
+}
+
+.radio-group label {
+    font-family: var(--font-body);
+    font-weight: normal;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+}
+
+input[type="radio"] {
+    accent-color: var(--primary-color);
+}
+
+/* Endereço Condicional */
+#address-fields {
+    display: none;
+    background-color: var(--bg-color);
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+#address-fields.visible {
+    display: block;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(62, 59, 54, 0.6);
+    /* Overlay mais suave */
+    z-index: 999;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.overlay.open {
+    display: block;
+}
+
+/* Rodapé Refinado */
+footer {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--bg-color);
+    /* Fundo claro para o rodapé */
+    color: var(--text-light);
+    border-top: 1px solid var(--border-color);
+    margin-top: 60px;
+}
+
+footer p {
+    opacity: 1;
+    font-weight: 300;
+    font-family: var(--font-body);
+    font-size: 0.9em;
+}
+
+.whatsapp-contact {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 15px 0;
+    color: var(--text-color);
+}
+
+/* Integração Instagram */
+.insta {
+    color: var(--primary-color);
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.insta svg {
+    fill: currentColor;
+    width: 18px;
+    height: 18px;
+}
+
+.insta:hover {
+    color: var(--text-color);
+    border-bottom-color: var(--text-color);
+}
+
+.header-insta {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: var(--primary-color);
+    transition: transform 0.3s;
+}
+
+.header-insta:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.header-insta svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    header {
+        padding: 40px 15px 20px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .header-insta {
+        top: 20px;
+        right: 20px;
+    }
+
+    .products-container {
+        grid-template-columns: 1fr;
+        /* Coluna única no mobile */
+        gap: 40px;
+        padding: 40px 20px 80px;
+    }
+
+    .product-card {
+        align-items: center;
+        text-align: center;
+    }
+
+    .product-card img {
+        height: 280px;
+    }
+
+    .product-card button {
+        align-self: center;
+    }
+
+    .cart {
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .cart-panel {
+        width: 95%;
+        padding: 25px;
+        max-height: 80vh;
+    }
+
+    .cart-header h3 {
+        font-size: 1.5em;
+    }
+
+    footer {
+        padding: 60px 20px 100px;
+        /* Mais espaço pra não cobrir com o carrinho */
+    }
+}
+
+/* --- Animation --- */
+@keyframes pulseLogo {
+    0% {
+        transform: scale(1);
+        filter: sepia(0.1) contrast(0.95);
+    }
+
+    50% {
+        transform: scale(1.03);
+        filter: sepia(0) contrast(1);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: sepia(0.1) contrast(0.95);
+    }
+}
+
+.logo-container {
+    animation: pulseLogo 4s infinite ease-in-out;
+}
